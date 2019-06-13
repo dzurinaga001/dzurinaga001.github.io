@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Mi primer mapa web con Leaflet</title>
+<meta charset="utf-8" />
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.0/dist/leaflet.css"
+ integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+ crossorigin=""/>
+<!-- enlace a JavaScript de Leaflet (justo tras CSS) -->
+<script src="https://unpkg.com/leaflet@1.5.0/dist/leaflet.js"
+ integrity="sha512-3Wcxp7F9bV2pl+MBgrL6Pz7AJASLpemmQPIiPA0lDs3ImF0z4JuuMIBPeirLbgIuhfH2gJyGWZjvm6M+Zr7L6Q=="
+ crossorigin=""></script>
+
+
+</head>
+<body>
+<h1>Mapa de prueba</h1>
+
+<!-- bloque dónde aparecerá el mapa -->
+<div id="bloque_mapa" style="width: 400px; height: 600px;"></div>
+
+<script>
+// definimos el mapa como una variable y le ajustamos dónde lo queremos ver
+    var mi_mapa = L.map('bloque_mapa').setView([40, -2], 5);
+
+// añadimos mapa de fondo
+    L.tileLayer(
+    // dirección de las tiles
+    'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',
+   // propiedades
+   { maxZoom: 10,  // zoom máximo 10
+    // Líneas de atribución
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' + '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+        id: 'mapbox.streets'
+    }).addTo(mi_mapa);
+
+    var marker = L.marker([40, -8]  // marcador en esas coordenadas
+  ).addTo(mi_mapa);               // se añade al mapa
+      marker.addTo(mi_mapa)     // se puede añadir aplicando función al objeto
+
+    var stamen_tms = L.tileLayer(
+        'http://a.tile.stamen.com/terrain/{z}/{x}/{y}.png', { // URL con tiles
+            // texto de atribución - IMPORTANTE
+            attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>,<a href="http://creativecommons.org/licenses/by/3.0"></a>',
+            maxZoom: 20  // zoom máximo
+            });
+        stamen_tms.addTo(mi_mapa);
+
+        // añadir TM de OpenStreetMap render Mapnik
+    var OSM_mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    });
+      OSM_mapnik.addTo(mi_mapa);
+
+    var escala = L.control.scale()
+ escala.addTo(mi_mapa);
+
+      var CartoDB_DarkMatterNoLabels = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
+	attribution: '&copy; <a >CARTO</a>',
+	subdomains: 'abcd',
+	maxZoom: 19
+});
+CartoDB_DarkMatterNoLabels.addTo(mi_mapa);
+
+var PNOA = L.tileLayer.wms('http://www.idee.es/wms/PNOA/PNOA?', {  //URL WMS
+      layers: 'PNOA',          // capa del WMS
+      format: 'image/png',     // tipo de formato
+      transparent: true,       // activa capa alfa/transparente sino todo en blanco y no salen los países
+      });
+  PNOA.addTo(mi_mapa);         // añadir capa al mapa
+
+  var escala = L.control.scale()
+ escala.addTo(mi_mapa);
+
+  var baseMaps = {                  // variable con apartado de mapas base
+      "OpenStreetMap": CartoDB_DarkMatterNoLabels,  // elemento a incluir y descripción
+      "Stamen": stamen_tms,
+      };
+  var overlayMaps = {              // apartado de capas
+      "Ortofoto PNOA": PNOA       // elemento a incluir y descripción
+      };
+  var capas = L.control.layers(   // variable con control de capas
+    baseMaps,                     // añadiendo capas base
+    overlayMaps,                  // añadiendo capas
+    {collapsed:true});            // control NO desplegado
+  capas.addTo(mi_mapa);           // añadimos control de capas al mapa
+
+</script>
+
+</body>
+</html>
