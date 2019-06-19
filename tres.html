@@ -11,20 +11,17 @@
         <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
         <link rel="stylesheet" href="css/leaflet-measure.css">
         <style>
-        
         #map {
             width: 1620px;
             height: 853px;
         }
-
         </style>
-    
         <title></title>
     </head>
     <body>
-            <header>
-                    <h1>Mapa resultado de las elecciones EE.UU. 2016 </h1>
-                </header>
+                    <header>
+                            <h1>Mapa resultado de las elecciones EE.UU. 2016 </h1>
+                        </header>
         <div id="map">
         </div>
         <script src="js/qgis2web_expressions.js"></script>
@@ -60,8 +57,6 @@
             zoomControl:true, maxZoom:28, minZoom:1
         }).fitBounds([[9.10434264644558,-167.13745747939709],[70.54188460100184,-50.326713786715516]]);
         var hash = new L.Hash(map);
-        L.tileLayer('https://maps.wikimedia.org/osm-intl/${z}/${x}/${y}.png').addTo(map);
-        var escala = L.control.scale() escala.addTo(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>');
         var measureControl = new L.Control.Measure({
             position: 'topleft',
@@ -94,7 +89,6 @@
                 },
                 mouseover: highlightFeature,
             });
-           
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['STATE_NAME'] !== null ? Autolinker.link(String(feature.properties['STATE_NAME'])) : '') + '</td>\
@@ -168,7 +162,7 @@
             position: 'topleft',
             text: 'Search',
             title: 'Testing'
-        }).addTo(map); 
+        }).addTo(map);
         document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
         .className += ' fa fa-search';
         document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
@@ -176,6 +170,8 @@
         var baseMaps = {};
         L.control.layers(baseMaps,{'PArtidos_estados<br /><table><tr><td style="text-align: center;"><img src="legend/PArtidos_estados_0_Democrat0.png" /></td><td>Democrat</td></tr><tr><td style="text-align: center;"><img src="legend/PArtidos_estados_0_Republican1.png" /></td><td>Republican</td></tr><tr><td style="text-align: center;"><img src="legend/PArtidos_estados_0_2.png" /></td><td></td></tr></table>': layer_PArtidos_estados_0,}).addTo(map);
         setBounds();
+        L.control.scale().addTo(map);
+        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map);
         </script>
     </body>
 </html>
