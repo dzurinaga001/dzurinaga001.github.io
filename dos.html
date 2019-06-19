@@ -15,20 +15,20 @@
 	<style> 
   	#map {
    	 width: 700px;
-  	 height: 600px; }
+  	 height: 600px; } 
 </style> 
 </head>  
 	<body>
 	 
 		<div id ="map"> </div> 
 	<script>
-		var map = L.map('map', 	{center: [43.257, -2.92344],zoom: 11});
+		var map = L.map('map', 	{center: [43.257, -2.92344],zoom: 11});  // indicación de las coordenadas donde se quiere ver el visor
 
-		L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map);
+		L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map); 
 	
-	    var marker = L.marker([43.2686800, -2.9342100]).addTo(map);
+	    var marker = L.marker([43.2686800, -2.9342100]).addTo(map); // marcador en esas coordenadas
 
-        L.control.scale().addTo(map);
+        L.control.scale().addTo(map); // añadir la escala al mapa
 		
 
 	</script>
