@@ -60,6 +60,8 @@
             zoomControl:true, maxZoom:28, minZoom:1
         }).fitBounds([[9.10434264644558,-167.13745747939709],[70.54188460100184,-50.326713786715516]]);
         var hash = new L.Hash(map);
+            var escala = L.control.scale() escala.addTo(map);
+            L.tileLayer('https://maps.wikimedia.org/osm-intl/${z}/${x}/${y}.png').addTo(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>');
         var measureControl = new L.Control.Measure({
             position: 'topleft',
