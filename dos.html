@@ -1,22 +1,17 @@
-
 <!DOCTYPE html>
 <html>
-<head>
-<title>Guggemheim de Bilbao</title>
-<meta charset="utf-8" />
-	
-<title>Leaflet-omnivore</title>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+<head> 
+	<meta charset="UTF-8">
+	<title>Leaflet-omnivore</title>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
    integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
    crossorigin=""/>
-<script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+	<script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
    integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
    crossorigin=""></script>
-
 </head>
 <body>
 <h1>Bilbao, Guggemheim</h1>
-
 	<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
 	
 	<style> 
@@ -33,9 +28,11 @@
 
 		L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map);
 	
-		var marker = L.marker([43.2686800, -2.9342100]).addTo(map)
-    
-		var escala = L.control.scale() escala.addTo(map);
+	    var marker = L.marker([43.2686800, -2.9342100]).addTo(map);
+
+        L.control.scale().addTo(map);
+		
+
 	</script>
 	</body> 
 </html>
