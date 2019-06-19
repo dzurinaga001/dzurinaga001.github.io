@@ -92,7 +92,7 @@
                 },
                 mouseover: highlightFeature,
             });
-            L.tileLayer('https://maps.wikimedia.org/osm-intl/${z}/${x}/${y}.png').addTo(map);
+           
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['STATE_NAME'] !== null ? Autolinker.link(String(feature.properties['STATE_NAME'])) : '') + '</td>\
@@ -167,6 +167,7 @@
             text: 'Search',
             title: 'Testing'
         }).addTo(map);
+             L.tileLayer('https://maps.wikimedia.org/osm-intl/${z}/${x}/${y}.png').addTo(map);
         document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
         .className += ' fa fa-search';
         document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
